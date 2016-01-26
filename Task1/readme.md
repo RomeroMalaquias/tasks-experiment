@@ -1,2 +1,2 @@
 # Task 1
-### Given a function f. Wich is the ouput when i have (x1, x2, x3, ...) as input and i have as fetures (y1, y2, y3, ...) enabled?
+### Given a function f. Wich is the ouput when i have (x1, x2, x3, ...) as input and i have as features (y1, y2, y3, ...) enabled?

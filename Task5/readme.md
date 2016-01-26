@@ -1,14 +1,5 @@
-# Task 5
-### Parenthesis / Operator. Forgetting any operand.
+# Task 3
+### Wich config has problems.
 
 ##Task:
-**Decida em qual(is) configurações existe(m) erro(s).**
-
-R: 
-```
-#define FEAT_MZSCHEME
-#define HAVE_SYS_TIME_H
-#define HAVE_GETTIMEOFDAY
-```
-os_unix-UD.c:32:21: error: storage size of 'start_tv' isn't known
-     struct timeval  start_tv;
+**Define wich config fails in test.**
