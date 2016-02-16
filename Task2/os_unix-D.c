@@ -42,7 +42,7 @@ RealWaitForChar(fd, msec, check_for_gpm)
         update_time = update_time || xsmp_icefd != -1;
 #endif
 #ifdef FEAT_MZSCHEME
-		update_time =  || (mzthreads_allowed() && p_mzq > 0);
+		update_time = update_time || (mzthreads_allowed() && p_mzq > 0);
 #endif
 #else
 #ifdef USE_XSMP
