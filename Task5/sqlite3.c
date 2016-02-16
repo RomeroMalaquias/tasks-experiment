@@ -18,11 +18,10 @@ static int yy_find_shift_action(int pParser,        /* The parser */
   }
   assert( iLookAhead!=YYNOCODE );
   i += iLookAhead;
-  if( i<0 || i>=YY_ACTTAB_COUNT || yy_lookahead[i]!=iLookAhead ){
+  if( i<0 || i>=YY_ACTTAB_COUNT || i!=iLookAhead ){
     if( iLookAhead>0 ){
         return -1;
       }
-#endif
 #ifdef YYWILDCARD
       {
         int j = i - iLookAhead + YYWILDCARD;
@@ -33,7 +32,7 @@ static int yy_find_shift_action(int pParser,        /* The parser */
 #if YY_SHIFT_MAX+YYWILDCARD>=YY_ACTTAB_COUNT
           j<YY_ACTTAB_COUNT &&
 #endif
-          yy_lookahead[j]==YYWILDCARD
+          j==YYWILDCARD
         ){
 #ifndef NDEBUG
           if( yyTraceFILE ){
