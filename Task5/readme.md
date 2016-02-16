@@ -1,5 +1,4 @@
-# Task 2
-### Wich config has problems.
+# Task 5
+### Wich config fail on test.
 
-Foi encontrado um erro de sintaxe (parenteses, chaves, ponto e virgula faltando, ...) em uma das configurações do seguinte código.
-Corrija o código fonte de forma que todas as configurações não apresentem erro de sintaxe.
+Existe uma configuração que não passa nos testes, encontre-a.
