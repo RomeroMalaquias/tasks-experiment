@@ -1,5 +1,8 @@
+#include<stdio.h>
+#include<stdlib.h>
 #define YYNOCODE 1
 #define YY_ACTTAB_COUNT 0
+#define YY_SHIFT_USE_DFLT 1
 /*
 ** Find the appropriate action for a parser given the terminal
 ** look-ahead token iLookAhead.
@@ -47,4 +50,9 @@ static int yy_find_shift_action(int pParser,        /* The parser */
 #endif /* YYWILDCARD */
     }
     return stateno;
+}
+
+int main() {
+printf("%d", yy_find_shift_action(10,0));
+return 0;
 }
