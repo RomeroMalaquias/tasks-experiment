@@ -1,3 +1,5 @@
+#define YYNOCODE 1
+#define YY_ACTTAB_COUNT 0
 /*
 ** Find the appropriate action for a parser given the terminal
 ** look-ahead token iLookAhead.
@@ -16,14 +18,13 @@ static int yy_find_shift_action(int pParser,        /* The parser */
    || (i = stateno)==YY_SHIFT_USE_DFLT ){
     return stateno;
   }
-  assert( iLookAhead!=YYNOCODE );
   i += iLookAhead;
   if( i<0 || i>=YY_ACTTAB_COUNT || i!=iLookAhead ){
     if( iLookAhead>0 ){
         return -1;
       }
 #ifdef YYWILDCARD
-      {
+      else {
         int j = i - iLookAhead + YYWILDCARD;
         if( 
 #if YY_SHIFT_MIN+YYWILDCARD<0
@@ -46,7 +47,4 @@ static int yy_find_shift_action(int pParser,        /* The parser */
 #endif /* YYWILDCARD */
     }
     return stateno;
-  }else{
-    return i;
-  }
 }
