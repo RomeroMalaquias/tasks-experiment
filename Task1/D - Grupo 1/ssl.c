@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include "ssl-lib.h"
 #include "ssl-D.h"
 
@@ -14,7 +15,7 @@ void msg (int handshake, char msg[], char return_msg[], char username[], char ty
         is_authenticated = is_authenticated && type_set != "[CN SET]";
 #endif
 #ifdef ENABLE_OCC
-    is_authenticated = is_authenticated || (return_msg == "succeeded" && username.length > 0);
+    is_authenticated = is_authenticated || (return_msg == "succeeded" && strlen(username) > 0);
 #endif
     if (is_authenticated) 
 	{

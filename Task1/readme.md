@@ -6,7 +6,29 @@
 **Quais as saídas para as entradas dadas.**
 O desenvolvedor responsável pela função “key_method_2_read(...)” não documentou quais seriam as possíveis mensagens impressas para as diferentes entradas, cabe a você descobrir qual será a mensagem quando:
 
-* Tal e tal estiveram ativos e a entrada for
-* Tal e tal estiveram ativos e a entrada for
-* Tal e tal estiveram ativos e a entrada for
-* Tal e tal estiveram ativos e a entrada for
+1.
+	* Se `ENABLE_DEF_AUTH` estiver definido
+	* D_HANDSHAKE = 1
+	* SSLF_USERNAME_AS_COMMON_NAME = 1
+	* ssl_flags = 0
+	* ks = "succeeded"
+	* username = "jose"
+2.
+	* username = "joao"
+	* ks = "deferred"
+	* D_HANDSHAKE = 1
+	* SSLF_USERNAME_AS_COMMON_NAME = 1
+	* ssl_flags = 1
+3.
+	* username = "joao"
+	* ks = "succeeded"
+	* D_HANDSHAKE = 1
+	* SSLF_USERNAME_AS_COMMON_NAME = 1
+	* ssl_flags = 1
+4.
+	* Se `ENABLE_DEF_AUTH`e `ENABLE_OCC` estiverem definidos
+	* username = "jose"
+	* ks = "deferred"
+	* D_HANDSHAKE = 1
+	* SSLF_USERNAME_AS_COMMON_NAME = 1
+	* ssl_flags = 1

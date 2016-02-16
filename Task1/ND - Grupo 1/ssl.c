@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include "ssl-lib.h"
 #include "ssl-UD.h"
 
@@ -7,9 +8,9 @@
 
 void msg (int handshake, char msg[], char return_msg[], char username[], char type_set[])
 {
-	if (handshake && 
+	if (handshake  
 #ifdef ENABLE_DEF_AUTH
-        return_msg != "deferred"
+        && return_msg != "deferred"
 #endif
 #if defined(PLUGIN_DEF_AUTH) || defined(ENABLE_OCC)
         &&
@@ -21,7 +22,7 @@ void msg (int handshake, char msg[], char return_msg[], char username[], char ty
 #endif
 #endif
 #ifdef ENABLE_OCC
-    (return_msg == "succeeded" && username.length > 0)
+    (return_msg == "succeeded" && strlen(username) > 0)
 #endif
     ) 
 	{
