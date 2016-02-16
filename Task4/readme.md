@@ -6,7 +6,7 @@
 
 Altere o código de forma a adicionar a chamada de função fnprintf, essa função deverá seguir os seguintes critérios:
 
-* A funcionalidade fnprintf estará ativa quando a flag `HAVE_FNPRINTF` for definida (ex: `#define HAVE_FNPRINTF`).
+* A funcionalidade fnprintf estará ativa quando a flag `HAVE_FNPRINTF` for definida (`#define HAVE_FNPRINTF`).
 
 * Quando ela for definida, as outras funções (sprintf, snprintf) funções não deverão aparecer no código.
 

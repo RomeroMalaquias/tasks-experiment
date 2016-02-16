@@ -1,5 +1,5 @@
-# Task 3
+# Task 2
 ### Wich config has problems.
 
-##Task:
-**Define wich config fails in test.**
+Foi encontrado um erro de sintaxe (parenteses, chaves, ponto e virgula faltando, ...) em uma das configurações do seguinte código.
+Corrija o código fonte de forma que todas as configurações não apresentem erro de sintaxe.
