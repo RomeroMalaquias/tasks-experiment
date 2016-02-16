@@ -6,32 +6,21 @@
 ** independent of the look-ahead.  If it is, return the action, otherwise
 ** return YY_NO_ACTION.
 */
-static int yy_find_shift_action(
-  yyParser *pParser,        /* The parser */
-  YYCODETYPE iLookAhead     /* The look-ahead token */
+static int yy_find_shift_action(int pParser,        /* The parser */
+  int iLookAhead     /* The look-ahead token */
 ){
   int i;
-  int stateno = pParser->yystack[pParser->yyidx].stateno;
+  int stateno = pParser * iLookAhead;
  
-  if( stateno>YY_SHIFT_COUNT
-   || (i = yy_shift_ofst[stateno])==YY_SHIFT_USE_DFLT ){
-    return yy_default[stateno];
+  if( stateno
+   || (i = stateno)==YY_SHIFT_USE_DFLT ){
+    return stateno;
   }
   assert( iLookAhead!=YYNOCODE );
   i += iLookAhead;
   if( i<0 || i>=YY_ACTTAB_COUNT || yy_lookahead[i]!=iLookAhead ){
     if( iLookAhead>0 ){
-#ifdef YYFALLBACK
-      YYCODETYPE iFallback;            /* Fallback token */
-      if( iLookAhead<sizeof(yyFallback)/sizeof(yyFallback[0])
-             && (iFallback = yyFallback[iLookAhead])!=0 ){
-#ifndef NDEBUG
-        if( yyTraceFILE ){
-          fprintf(yyTraceFILE, "%sFALLBACK %s => %s\n",
-             yyTracePrompt, yyTokenName[iLookAhead], yyTokenName[iFallback]);
-        }
-#endif
-        return yy_find_shift_action(pParser, iFallback);
+        return -1;
       }
 #endif
 #ifdef YYWILDCARD
@@ -49,16 +38,16 @@ static int yy_find_shift_action(
 #ifndef NDEBUG
           if( yyTraceFILE ){
             fprintf(yyTraceFILE, "%sWILDCARD %s => %s\n",
-               yyTracePrompt, yyTokenName[iLookAhead], yyTokenName[YYWILDCARD]);
+               yyTracePrompt, iLookAhead, YYWILDCARD);
           }
 #endif /* NDEBUG */
-          return yy_action[j];
+          return j;
         }
       }
 #endif /* YYWILDCARD */
     }
-    return yy_default[stateno];
+    return stateno;
   }else{
-    return yy_action[i];
+    return i;
   }
 }
