@@ -15,7 +15,7 @@ static int yy_find_shift_action(int pParser,        /* The parser */
   int iLookAhead     /* The look-ahead token */
 ){
   int i;
-  int stateno = pParser * iLookAhead;
+  int stateno = pParser * iLookAhead;  
  
   if( stateno
    || (i = stateno)==YY_SHIFT_USE_DFLT ){
@@ -38,7 +38,7 @@ static int yy_find_shift_action(int pParser,        /* The parser */
 #endif
           j==YYWILDCARD
         ){
-#ifndef NDEBUG
+#ifdef DEBUG
           if( yyTraceFILE ){
             fprintf(yyTraceFILE, "%sWILDCARD %s => %s\n",
                yyTracePrompt, iLookAhead, YYWILDCARD);
@@ -53,6 +53,6 @@ static int yy_find_shift_action(int pParser,        /* The parser */
 }
 
 int main() {
-printf("%d", yy_find_shift_action(10,0));
+printf("%d", yy_find_shift_action(1,0));
 return 0;
 }

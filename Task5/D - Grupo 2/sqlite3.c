@@ -39,12 +39,12 @@ static int yy_find_shift_action(int pParser,        /* The parser */
 #endif
           
         if (test){
-#ifndef NDEBUG
+#ifdef NDEBUG
           if( yyTraceFILE ){
             fprintf(yyTraceFILE, "%sWILDCARD %s => %s\n",
                yyTracePrompt, iLookAhead, YYWILDCARD);
           }
-#endif /* NDEBUG */
+#endif /* DEBUG */
           return j;
         }
       }
