@@ -5,7 +5,7 @@
 ##Task:
 **Quais as saídas para as entradas dadas.**
 
-O desenvolvedor responsável pela função “key_method_2_read(...)” não documentou quais seriam as possíveis mensagens impressas para as diferentes entradas, cabe a você descobrir qual será a mensagem quando:
+O desenvolvedor responsável pela função `key_method_2_read(...)` não documentou quais seriam as possíveis mensagens impressas para as diferentes entradas, cabe a você descobrir qual será a mensagem quando:
 
 1.
 
