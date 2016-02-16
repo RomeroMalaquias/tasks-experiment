@@ -4,8 +4,10 @@
 ##Task:
 **Adicionar a funcionalidade `fnprintf`.**
 
-A funcionalidade fnprintf estará ativa quando a flag `HAVE_FNPRINTF` for definida (ex: `#define HAVE_FNPRINTF`).
+*Altere o código de forma a adicionar a chamada de função fnprintf, essa função deverá seguir os seguintes critérios:
 
-Quando ela for definida, as outras funções (sprintf, snprintf) funções não deverão aparecer no código.
+*A funcionalidade fnprintf estará ativa quando a flag `HAVE_FNPRINTF` for definida (ex: `#define HAVE_FNPRINTF`).
 
-A função fnprintf tem uma assinatura igual a `snprintf(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,portp[0] & 0xff, portp[1] & 0xff)`, mas no lugar do `adp[2] & 0xff` ela recebe `fnp[0] & 0xff` e no lugar do `portp[0] & 0xff` recebe `fnp[1] & 0xff`.
+*Quando ela for definida, as outras funções (sprintf, snprintf) funções não deverão aparecer no código.
+
+*A função fnprintf tem uma assinatura igual a `snprintf(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,portp[0] & 0xff, portp[1] & 0xff)`, mas no lugar do `adp[2] & 0xff` ela recebe `fnp[0] & 0xff` e no lugar do `portp[0] & 0xff` recebe `fnp[1] & 0xff`.
