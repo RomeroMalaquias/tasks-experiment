@@ -1,0 +1,21 @@
+#include "etio.h"
+#include <stdio.h>
+int sprintf2(char * buff, char * print, int a, int b, int c, int d,
+ 		       int e, int f) {
+			printf("sprintf\n");
+ 		       return c;
+ 		       }
+int snprintf2(char * buff, int buff_size, char * print,
+               int a, int b, int c, int d,
+ 		       int e, int f){
+			printf("snprintf\n");
+ 		       return c;
+ 		       }
+	       
+int fnprintf(char * buff, int buff_size, char * print,
+               int a, int b, int c, int d,
+ 		       int e, int f){
+			printf("fnprintf\n");
+ 		       return c;
+ 		       }
+ 		    

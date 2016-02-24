@@ -1,0 +1,1 @@
+int channel_open_session(CHANNEL *channel);
