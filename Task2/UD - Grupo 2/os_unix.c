@@ -6,6 +6,7 @@
 #define FEAT_MZSCHEME
 #define HAVE_SYS_TIME_H
 #define HAVE_GETTIMEOFDAY
+#define USE_XSMP
 
 int 
 mzthreads_allowed() 
@@ -22,11 +23,12 @@ RealWaitForChar(fd, msec, check_for_gpm)
 {
     int     ret;
 #ifdef FEAT_NETBEANS_INTG
-    int     nb_fd = netbeans_filedesc();
+    int     nb_fd = TRUE;
 #endif
 #if defined(FEAT_XCLIPBOARD) || defined(USE_XSMP) || defined(FEAT_MZSCHEME)
     static int  busy = FALSE;
 	int p_mzq = TRUE;
+	int xsmp_icefd = 10
 
     /* May retry getting characters after an event was handled. */
 #define MAY_LOOP
@@ -53,19 +55,14 @@ RealWaitForChar(fd, msec, check_for_gpm)
     ((mzthreads_allowed() && p_mzq > 0)
 #endif
         ))
-    gettimeofday(&start_tv, NULL);
+    msec = 0;
 #endif
 
     /* Handle being called recursively.  This may happen for the session
      * manager stuff, it may save the file, which does a breakcheck. */
     if (busy)
-		return 0;
+	return 0;
 #endif
 	return 1;
 }
 
-int main() {
-
-
-return 0;
-}
