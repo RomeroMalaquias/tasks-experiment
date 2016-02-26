@@ -1,5 +1,6 @@
 #include <stdbool.h>
-#include <stdio.h>
+#include "etio.h"
+#include "nanoftp.h"
 
 
 int
@@ -14,11 +15,11 @@ int fnp[2] = {10,1};
 int len;
 
 #ifndef HAVE_SNPRINTF
-  	len = sprintf(buf, "PORT %d,%d,%d,%d,%d,%d\r\n",
+  	len = sprintf2(buf, "PORT %d,%d,%d,%d,%d,%d\r\n",
 	       adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,
 	       portp[0] & 0xff, portp[1] & 0xff);
 #else /* HAVE_SNPRINTF */
-  	len = snprintf(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
+  	len = snprintf2(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
 	       adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,
 	       portp[0] & 0xff, portp[1] & 0xff);
 #endif /* HAVE_SNPRINTF */
