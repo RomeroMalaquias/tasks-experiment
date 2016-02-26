@@ -28,7 +28,7 @@ RealWaitForChar(fd, msec, check_for_gpm)
 #if defined(FEAT_XCLIPBOARD) || defined(USE_XSMP) || defined(FEAT_MZSCHEME)
     static int  busy = FALSE;
 	int p_mzq = TRUE;
-	int xsmp_icefd = 10
+	int xsmp_icefd = 10;
 
     /* May retry getting characters after an event was handled. */
 #define MAY_LOOP
