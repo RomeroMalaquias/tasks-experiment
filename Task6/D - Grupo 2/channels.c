@@ -1,24 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
-
-typedef struct BUFFER
-{
-	int buff;
-} BUFFER;
-typedef struct version
-{
-	int *version;
-} version;
-typedef struct session
-{
-	version *version;
-} session;
-typedef struct CHANNEL
-{
-	session session;
-} CHANNEL;
-
-
+#include "channels.h"
+#define HAVE_SSH1
 
   static int channel_open(CHANNEL *channel, const char *type_c, int window,
      int maxpacket, BUFFER *payload) {
@@ -46,11 +29,4 @@ int channel_open_session(CHANNEL *channel) {
   #endif
  
    return channel_open(channel,"session",64000,32000,NULL);
-}
-
-
-int main() {
-
-
-return 0;
 }
