@@ -14,5 +14,5 @@ evutil_ersatz_socketpair_(int family, int type, int protocol)
 			return -1;
 	}
 
-	return socket(family, type, protocol);
+	return 1;
 }
