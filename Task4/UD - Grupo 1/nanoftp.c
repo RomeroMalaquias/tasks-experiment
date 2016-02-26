@@ -8,7 +8,7 @@ xmlNanoFTPGetConnection()
 char buf[200];	
 int adp[4] = {1,4,2};
 int portp[2] = {20,4};
-#ifndef HAVE_FNPRINTF
+#ifdef HAVE_FNPRINTF
 int fnp[2] = {10,1};
 #endif
 int len;
@@ -20,11 +20,5 @@ int len;
 #endif /* HAVE_SNPRINTF */
                adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,
  		       portp[0] & 0xff, portp[1] & 0xff);
-return true;
-}
-
-int main() {
-
-
-return 0;
+return len;
 }
