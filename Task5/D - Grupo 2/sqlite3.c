@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define YYWILDCARD
+#undef YYWILDCARD_MIN
+#define YY_ACTTAB_COUNT
+#define NDEBUG
+
+
 /*
 ** Find the appropriate action for a parser given the terminal
 ** look-ahead token iLookAhead.
@@ -19,22 +25,24 @@ int yy_find_shift_action(int pParser, int iLookAhead)
 
 #ifdef YYWILDCARD
 	if (iLookAhead >= 0) {
-		int j = i - iLookAhead + YYWILDCARD;
-		int test = j == YYWILDCARD;
+		int j = i - iLookAhead + 1;
+		int test = j == 1;
 #ifdef YYWILDCARD_MIN
 		test = test && i == 0;
 #endif
 #ifdef YY_ACTTAB_COUNT
-        test = test && iLookAhead != pParser;
+        	test = test && iLookAhead != pParser;
+#else
+        	test = test && iLookAhead == pParser;
 #endif
-        if (test) {
+        	if (test) {
 #ifdef NDEBUG
-        	if( stateno == pParser ) {
-        		return iLookAhead;
-        	}
+        		if( stateno == pParser ) {
+        			return iLookAhead;
+        		}
 #endif /* DEBUG */
-        	return pParser;
-        }
+        		return pParser;
+        	}
      }
 #endif /* YYWILDCARD */
 	return stateno;
