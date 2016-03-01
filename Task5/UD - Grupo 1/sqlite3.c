@@ -16,18 +16,20 @@ int yy_find_shift_action(int pParser, int iLookAhead)
 	i = stateno;
 	i += iLookAhead;
 #ifdef YYWILDCARD
-	int j = i - iLookAhead + YYWILDCARD;
-	if( j == YYWILDCARD
+	int j = i - iLookAhead + 1;
+	if( j == 1
 #ifdef YYWILDCARD_MIN
-			&& i == 0
+		&& i == 0
 #endif
 #ifdef YY_ACTTAB_COUNT
-			&& iLookAhead != pParser
+		&& iLookAhead != pParser
+#else
+		&& iLookAhead == pParser
 #endif
         ){
 #ifdef NDEBUG
           if(stateno == pParser){
-        	  return iLookAhead;
+        	return iLookAhead;
           }
 #endif /* NDEBUG */
           return pParser;
