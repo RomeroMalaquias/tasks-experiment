@@ -5,9 +5,11 @@ int
 evutil_ersatz_socketpair_(int family, int type, int protocol)
 {
 	int test;
-	test = (family != AF_INET);
+#ifdef USE_AF_INET
+    	test = (family != AF_INET);
 #ifdef USE_AF_UNIX
-	test = test && (family != AF_UNIX);
+    	test = test && (family != AF_UNIX);
+#endif
 #endif
 	if (protocol || test) {
 			return -1;
