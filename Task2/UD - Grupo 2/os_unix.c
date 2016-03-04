@@ -15,7 +15,6 @@ mzthreads_allowed()
 };
 
 int
-
 RealWaitForChar(fd, msec, check_for_gpm)
     int     fd;
     long    msec;

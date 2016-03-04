@@ -3,10 +3,7 @@
 #include "channels.h"
 #define HAVE_SSH1
 
-  static int channel_open(CHANNEL *channel, const char *type_c, int window,
-     int maxpacket, BUFFER *payload) {
-   return 1;
-   }
+
   
 /**
   * @brief Open a session channel (suited for a shell, not TCP forwarding).

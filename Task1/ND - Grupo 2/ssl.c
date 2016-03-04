@@ -33,7 +33,7 @@ void msg (int handshake, char msg[], char return_msg[], char username[], char ty
 
 static bool key_method_2_read (struct tls_session *session, struct user up, struct auth_string ks)
 {  	
-	if ((session->opt.ssl_flags & SSLF_USERNAME_AS_COMMON_NAME))
+	if ((session->opt.ssl_flags && SSLF_USERNAME_AS_COMMON_NAME))
   	    set_common_name (session, up.username);
             msg (D_HANDSHAKE, "TLS: Username/Password authentication %s for username '%s' %s",
 #ifdef ENABLE_DEF_AUTH
@@ -42,6 +42,6 @@ static bool key_method_2_read (struct tls_session *session, struct user up, stru
   	       "succeeded",
 #endif
   	       up.username,
-  	       (session->opt.ssl_flags & SSLF_USERNAME_AS_COMMON_NAME) ? "[CN SET]" : "");
+  	       (session->opt.ssl_flags && SSLF_USERNAME_AS_COMMON_NAME) ? "[CN SET]" : "");
 return true;
 }

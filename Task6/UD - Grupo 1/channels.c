@@ -1,22 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include "channels.h"
+#define HAVE_SSH1
 
-typedef struct BUFFER
-{
-	int buff;
-} BUFFER;
-typedef struct version
-{
-	int *version;
-} version;
-typedef struct session
-{
-	version *version;
-} session;
-typedef struct CHANNEL
-{
-	session session;
-} CHANNEL;
 
 
 /** \brief open a session channel (suited for a shell. Not tcp Forwarding)
@@ -29,13 +15,6 @@ typedef struct CHANNEL
   * \see channel_request_exec()
   * \warning API changed from 0.11
   */
-  static int channel_open(CHANNEL *channel, const char *type_c, int window,
-     int maxpacket, BUFFER *payload) {
-   return 1;
-   }
- 
-  
-  
   
  int channel_open_session(CHANNEL *channel){
  #ifdef HAVE_SSH1
@@ -48,9 +27,3 @@ typedef struct CHANNEL
   #endif
   }
 
-
-int main() {
-
-
-return 0;
-}
