@@ -604,7 +604,7 @@ xmlNanoFTPGetResponse(void *ctx) {
     return(xmlNanoFTPReadResponse(ctx, buf, 16 * 1024));
 }
 
-#ifdef CUSTOM_CHECK //Se CUSTOM_CHECK1 estiver definido e essa não, vai dar erro
+#ifdef CUSTOM_CHECK //Se CUSTOM_CHECK1 estiver definido e essa não, vai dar erro - Exemplo de erro com dependência
 /**
  * xmlNanoFTPCheckResponse:
  * @ctx:  an FTP context
@@ -1553,22 +1553,25 @@ xmlNanoFTPList(void *ctx, ftpListCallback callback, void *userData,
 	    close(ctxt->dataFd); ctxt->dataFd = -1;
 	    return(-1);
 	}
-	#ifdef CUSTOM_CHECK1
 	if (res == 0) {
-	    res = xmlNanoFTPCheckResponse(ctxt);
-	    if (res < 0) {
+	    if (res
+	    #ifdef CUSTOM_CHECK1
+	    + xmlNanoFTPCheckResponse(ctxt)
+	    #endif < 0) {
 		close(ctxt->dataFd); ctxt->dataFd = -1;
 		ctxt->dataFd = -1;
 		return(-1);
 	    }
-	    if (res == 2) {
+	    if (res
+	    #ifdef CUSTOM_CHECK1
+	    + xmlNanoFTPCheckResponse(ctxt)
+	    #endif == 2) {
 		close(ctxt->dataFd); ctxt->dataFd = -1;
 		return(0);
 	    }
 
 	    continue;
 	}
-	#endif
 
 	if ((len = read(ctxt->dataFd, &buf[index], sizeof(buf) - (index + 1))) < 0) {
 #ifdef DEBUG_FTP
@@ -1705,22 +1708,26 @@ xmlNanoFTPGet(void *ctx, ftpDataCallback callback, void *userData,
 	    close(ctxt->dataFd); ctxt->dataFd = -1;
 	    return(-1);
 	}
-	#ifdef CUSTOM_CHECK1
 	if (res == 0) {
-	    res = xmlNanoFTPCheckResponse(ctxt);
-	    if (res < 0) {
+	    if (res
+	    #ifdef CUSTOM_CHECK1
+	    + xmlNanoFTPCheckResponse(ctxt)
+	    #endif
+	    < 0) {
 		close(ctxt->dataFd); ctxt->dataFd = -1;
 		ctxt->dataFd = -1;
 		return(-1);
 	    }
-	    if (res == 2) {
+	    if (res
+	    #ifdef CUSTOM_CHECK1
+	    + xmlNanoFTPCheckResponse(ctxt)
+	    #endif == 2) {
 		close(ctxt->dataFd); ctxt->dataFd = -1;
 		return(0);
 	    }
 
 	    continue;
 	}
-	#endif
 	if ((len = read(ctxt->dataFd, &buf, sizeof(buf))) < 0) {
 	    callback(userData, buf, len);
 	    close(ctxt->dataFd); ctxt->dataFd = -1;
