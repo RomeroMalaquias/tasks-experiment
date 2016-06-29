@@ -1343,24 +1343,23 @@ xmlNanoFTPParseList(const char *list, ftpListCallback callback, void *userData) 
 		#endif
 	while (
 	#ifdef CUSTOM_1
-	((*cur == ' ') 
+	(*cur == ' ') 
 		#ifdef CUSTOM_2
 	|| (*cur == '\n')
 		#else
-	|| (*cur == '\r')) //sugestão, esse parêntese
+	|| (*cur == '\r')) //Sugestão 3 esse parêntese
 	#endif
 	#endif
-	)
 	    cur++;
 	return(cur - list);
     } else if (*list == '+') {
 	return(0);
     } else {
-	while ((*cur == ' ') 
+	while ((*cur == ' ') || 
 	#ifdef CUSTOM_1
-		| (*cur == '\n') // | a menos
-	#elif defined CUSTOM_2 
-		|| (*cur == '\r') 
+		(*cur == '\n')
+	#elif defined CUSTOM_2 //sugestão 1 quebrar o ||
+		(*cur == '\r')) //sugestão 2 esse parêntese
 	#endif
 	    cur++;
 	if (*cur == 0) return(0);
