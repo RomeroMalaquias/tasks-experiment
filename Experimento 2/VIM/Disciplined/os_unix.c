@@ -4517,7 +4517,7 @@ RealWaitForChar(fd, msec, check_for_gpm)
 # ifdef FEAT_SNIFF
 	int want_sniff_disconnect = fds[SNIFF_IDX].revents;
 	# ifdef USE_XSMP
-	want_sniff_disconnect = want_sniff_disconnect & POLLHUP;
+	want_sniff_disconnect = want_sniff_disconnect & POLLHUP);
 	#endif
 	if (ret < 0)
 	    sniff_disconnect(1);

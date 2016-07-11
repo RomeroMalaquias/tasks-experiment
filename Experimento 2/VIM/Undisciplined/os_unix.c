@@ -4432,10 +4432,6 @@ RealWaitForChar(fd, msec, check_for_gpm)
 #endif
 
 #ifdef MAY_LOOP
-    for (;;)
-#endif
-    {
-#ifdef MAY_LOOP
 	int		finished = TRUE; /* default is to 'loop' just once */
 # ifdef FEAT_MZSCHEME
 	int		mzquantum_used = FALSE;
@@ -4516,7 +4512,11 @@ RealWaitForChar(fd, msec, check_for_gpm)
 	    sniff_disconnect(1);
 	else if (want_sniff_request)
 	{
-	    if (fds[SNIFF_IDX].revents & POLLHUP)
+	    if (fds[SNIFF_IDX].revents 
+		# ifdef USE_XSMP
+		& POLLHUP)
+		#endif
+		)
 		sniff_disconnect(1);
 	    if (fds[SNIFF_IDX].revents & POLLIN)
 		sniff_request_waiting = 1;
@@ -4707,32 +4707,7 @@ RealWaitForChar(fd, msec, check_for_gpm)
 	}
 # endif
 
-#endif /* HAVE_SELECT */
-
-#ifdef MAY_LOOP
-	if (finished || msec == 0)
-	    break;
-
-	/* We're going to loop around again, find out for how long */
-	if (msec > 0)
-	{
-# ifdef USE_START_TV
-	    struct timeval  mtv;
-
-	    /* Compute remaining wait time. */
-	    gettimeofday(&mtv, NULL);
-	    msec -= (mtv.tv_sec - start_tv.tv_sec) * 1000L
-				   + (mtv.tv_usec - start_tv.tv_usec) / 1000L;
-# else
-	    /* Guess we got interrupted halfway. */
-	    msec = msec / 2;
-# endif
-	    if (msec <= 0)
-		break;	/* waited long enough */
-	}
-#endif
-    }
-
+#endif /* HAVE_SELECT */    
     return (ret > 0);
 }
 
