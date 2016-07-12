@@ -4857,8 +4857,17 @@ unix_expandpath(gap, path, wildoff, flags)
 	    dp = readdir(dirp);
 	    if (dp == NULL)
 		break;
+	/* ToDo: para a implementação do WIN_64 a função vim_regexec irá receber variáveis diferentes na chamada.
+		A primeira variável deverá ser trocada por &dp-d_name[0]*/
+		#ifdef CUSTOM_1
+			#define PARAM_1 &regmatch
+			#define PARAM_2 &(colnr_T)0
+		#else
+			#define PARAM_1	starts_with_dot
+			#define PARAM_2 &(colnr_T)1
+		#endif		
 	    if ((dp->d_name[0] != '.' || starts_with_dot)
-		    && vim_regexec(&regmatch, (char_u *)dp->d_name, (colnr_T)0))
+		    && vim_regexec(PARAM_1, (char_u *)dp->d_name, PARAM_2))
 	    {
 		STRCPY(s, dp->d_name);
 		len = STRLEN(buf);
