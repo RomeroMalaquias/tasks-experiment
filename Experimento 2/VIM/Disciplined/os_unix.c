@@ -4859,7 +4859,7 @@ unix_expandpath(gap, path, wildoff, flags)
 		break;
 	/* ToDo: para a implementação do WIN_64 a função vim_regexec irá receber variáveis diferentes na chamada.
 		A primeira variável deverá ser trocada por &dp-d_name[0]*/
-		#ifdef CUSTOM_1
+		#ifdef WIN_32
 			#define PARAM_1 &regmatch
 			#define PARAM_2 &(colnr_T)0
 		#else

@@ -4852,13 +4852,13 @@ unix_expandpath(gap, path, wildoff, flags)
 		A primeira variável deverá ser trocada por &dp-d_name[0]*/
 	    if ((dp->d_name[0] != '.' || starts_with_dot)
 		    && vim_regexec(
-		#ifdef CUSTOM_1
+		#ifdef WIN_32
 			&regmatch
 		#else
 			starts_with_dot
 		#endif
 		, (char_u *)dp->d_name, 		
-		#ifdef CUSTOM_1
+		#ifdef WIN_32
 			(colnr_T)0)
 		#else
 			(colnr_T)1)
