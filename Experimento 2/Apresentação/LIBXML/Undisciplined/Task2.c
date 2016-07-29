@@ -85,9 +85,9 @@ xmlNanoFTPGetConnection(void *ctx) {
 	portp = (unsigned char *) &dataAddr.sin_port;
 	
 #ifdef HAVE_SPRINTF
- 	len = sprintf2(buf, "PORT %d,%d,%d,%d,%d,%d\r\n",
+ 	len = sprintf(buf, "PORT %d,%d,%d,%d,%d,%d\r\n",
 #else /* HAVE_SNPRINTF */
- 	len = snprintf2(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
+ 	len = snprintf(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
 #endif /* HAVE_SNPRINTF */
               adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,
 		       portp[0] & 0xff, portp[1] & 0xff);			   

@@ -85,15 +85,15 @@ xmlNanoFTPGetConnection(void *ctx) {
 	portp = (unsigned char *) &dataAddr.sin_port;
 	//Adição da função
 #ifdef HAVE_FNPRINTF
- 	len = fnprintf2(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
+ 	len = fnprintf(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
 	       adp[0] & 0xff, adp[1] & 0xff, fnp[0] & 0xff, adp[3] & 0xff,
 	       portp[0] & 0xff, fnp[1] & 0xff);
 #elif defined HAVE_SPRINTF
- 	len = sprintf2(buf, "PORT %d,%d,%d,%d,%d,%d\r\n",
+ 	len = sprintf(buf, "PORT %d,%d,%d,%d,%d,%d\r\n",
 	       adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,
 	       portp[0] & 0xff, portp[1] & 0xff);
 #else /* HAVE_SNPRINTF */
- 	len = snprintf2(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
+ 	len = snprintf(buf, sizeof(buf), "PORT %d,%d,%d,%d,%d,%d\r\n",
 	       adp[0] & 0xff, adp[1] & 0xff, adp[2] & 0xff, adp[3] & 0xff,
 	       portp[0] & 0xff, portp[1] & 0xff);
 #endif /* HAVE_SNPRINTF */
