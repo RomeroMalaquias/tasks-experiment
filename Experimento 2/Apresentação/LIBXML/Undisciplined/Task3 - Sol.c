@@ -41,24 +41,21 @@ xmlNanoFTPTestConnection(int port, int protocol, int proxy) {
 	#else 
 	proxy * protocol)
 	#endif
-	#else 
-	5 *
-	#ifdef PF_INET
-	(
-	#ifdef AF_INET
-	- 10 - xmlNanoFTPTestEntries(22, 30, 32
-	#else 
-	10 - xmlNanoFTPTestEntries(22,32, 37
-	#endif
-	)
-	#ifdef PF_INET
-	 + port) * protocol
-	#else 
-	 - proxy + protocol)
-	#endif
-	#else 
-	7
-	#endif
+	#else 		
+		#ifdef PF_INET			
+			#ifdef AF_INET
+			5 * (- 10 - xmlNanoFTPTestEntries(22,30, 32) + port) * protocol //Deveria ser um - 10 no lugar do 10
+			#else 
+			5 * (10 - xmlNanoFTPTestEntries(22,30, 32) - proxy + protocol)
+			#endif
+		
+		#else
+			5 * (10 - xmlNanoFTPTestEntries(22,31, 37)
+			#ifdef AF_INET
+			 + port) * protocol
+			#else 
+			 - proxy + protocol)
+			#endif
 	#endif
 	;
 

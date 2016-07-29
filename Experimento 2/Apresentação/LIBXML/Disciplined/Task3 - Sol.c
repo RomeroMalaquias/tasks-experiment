@@ -43,23 +43,20 @@ xmlNanoFTPTestConnection(int port, int protocol, int proxy) {
 	#endif
 	#endif
 	#else 
-	returnValue += 5;
-	#ifdef PF_INET
-	#ifdef AF_INET
-	returnValue = returnValue * ( - 10 - xmlNanoFTPTestEntries(22, 30, 32) + port) * protocol; //Deveria ser um - 10 no lugar do 10
-	#else 
-	returnValue = returnValue * ( 10 - xmlNanoFTPTestEntries(22, 30, 32) + proxy * protocol);
-	#endif
-	#else 
-	#ifdef AF_INET
-	returnValue = returnValue * ( 10 - xmlNanoFTPTestEntries(22, 31, 37) + port) * protocol;
-	#else 
-	returnValue = returnValue * ( 10 - xmlNanoFTPTestEntries(22, 31, 37) + proxy * protocol);
-	#endif
-	#endif
-	#else 
-	returnValue += 7;
-	#endif
+		returnValue += 5;
+		#ifdef PF_INET
+			#ifdef AF_INET
+			returnValue = returnValue * ( - 10 - xmlNanoFTPTestEntries(22, 30, 32) + port) * protocol; //Deveria ser um - 10 no lugar do 10
+			#else 
+			returnValue = returnValue * ( 10 - xmlNanoFTPTestEntries(22, 30, 32) + proxy * protocol);
+			#endif
+		#else 
+			#ifdef AF_INET
+			returnValue = returnValue * ( 10 - xmlNanoFTPTestEntries(22, 31, 37) + port) * protocol;
+			#else 
+			returnValue = returnValue * ( 10 - xmlNanoFTPTestEntries(22, 31, 37) + proxy * protocol);
+			#endif
+		#endif		
 	#endif
 	return returnValue;
 
