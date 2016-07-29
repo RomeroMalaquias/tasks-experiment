@@ -26,7 +26,7 @@ xmlNanoFTPTest() {
  */
 
 int
-xmlNanoFTPTestConnection(int mem_index, int lc_jump, int signal) {
+memTestUse(int mem_index, int lc_jump, int signal) {
     int returnValue = 1 +
 	#ifdef FEAT_MZSCHEME
 	2

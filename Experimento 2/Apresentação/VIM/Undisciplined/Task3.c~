@@ -42,23 +42,23 @@ xmlNanoFTPTestConnection(int mem_index, int lc_jump, int signal) {
 	signal * lc_jump)
 	#endif
 	#else 
-	5 *
-	#ifdef USE_XSMP
-	(1 - memCheckCorrupted(2,
-	#ifdef FEAT_XCLIPBOARD
-	3, 3
-	#else 
-	2, 7
-	#endif
-	)
-	#ifdef USE_XSMP
-	 + mem_index) * lc_jump
-	#else 
-	 - signal + lc_jump)
-	#endif
-	#else 
-	2
-	#endif
+		5 * (1 - memCheckCorrupted(2,
+		#ifdef USE_XSMP
+		3, 3)
+			#ifdef FEAT_XCLIPBOARD
+			 + mem_index) * lc_jump
+			#else 
+			 - signal + lc_jump)
+			#endif
+		#else
+		2, 7)
+			#ifdef FEAT_XCLIPBOARD
+			 + mem_index) * lc_jump
+			#else 
+			 - signal + lc_jump)
+			#endif
+		#endif
+		
 	#endif
 	;
 
