@@ -3,19 +3,19 @@
 #include "xmlmemory.h"
 #include "nanoftp.h"
 
-/* #define DEBUG_FTP 1  */
+//#define SUPPORT_IP6
+/* //#define DEBUG_FTP 1  */
 #ifdef STANDALONE
 #ifndef DEBUG_FTP
-#define DEBUG_FTP 1
-#define SUPPORT_IP6
+//#define DEBUG_FTP 1
 #endif
 #endif
 
 static char hostname[100];
 
-#define FTP_COMMAND_OK		200
-#define FTP_SYNTAX_ERROR	500
-#define FTP_GET_PASSWD		331
+//#define FTP_COMMAND_OK		200
+//#define FTP_SYNTAX_ERROR	500
+//#define FTP_GET_PASSWD		331
 
 
 /**
