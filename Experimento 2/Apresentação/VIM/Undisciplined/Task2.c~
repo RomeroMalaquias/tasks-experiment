@@ -128,15 +128,15 @@ unix_expandpath(gap, path, wildoff, flags)
 		if ((dp->d_name[0] != '.' || starts_with_dot)
 		    && vim_regexec(
 		#ifdef WIN_32
-			d_name[0] == '/'
+			&regmatch
 		#else
 			starts_with_dot
 		#endif
-		, d_name, 		
+		, (char_u *)dp->d_name, 		
 		#ifdef WIN_32
-			colnr_T[0]
+			(colnr_T)0)
 		#else
-			colnr_T[1]
+			(colnr_T)1)
 		#endif
 		)
 	    {

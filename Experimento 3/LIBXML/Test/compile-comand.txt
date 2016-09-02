@@ -1,0 +1,1 @@
+gcc -o bla nanoftp.c nanoftp.h xmlmemory.h xmlmemory.c -nostartfiles -w

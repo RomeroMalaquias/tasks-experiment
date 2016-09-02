@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include "os_unixx.h"	    /* unix includes for os_unix.c only */
 
 /*
  * Wait "msec" msec until a character is available from file descriptor "fd".

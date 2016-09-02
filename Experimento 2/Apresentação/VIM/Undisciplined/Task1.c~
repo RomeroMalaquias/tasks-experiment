@@ -54,6 +54,7 @@ RealWaitForChar(fd, msec, check_for_gpm)
     if (busy)
 	return 0;
 #endif
+#endif
 	struct pollfd   fds[5];
 	int		nfd;
 # ifdef FEAT_XCLIPBOARD

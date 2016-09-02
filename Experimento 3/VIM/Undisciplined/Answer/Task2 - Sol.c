@@ -125,21 +125,19 @@ unix_expandpath(gap, path, wildoff, flags)
 	    dp = readdir(dirp);
 	    if (dp == NULL)
 		break;
-		if ((dp->d_name[0] != '.' || starts_with_dot)
-		    && vim_regexec(
+	//Adição da função
+	    int regexec_return = 0;
 		#ifdef WIN_32
-			d_name[0] == '/'
-		#else
-			starts_with_dot
-		#endif
-		, d_name, 		
-		#ifdef WIN_32
-			colnr_T[0]
-		#else
-			colnr_T[1]
-		#endif
-		)
+			regexec_return = vim_regexec(&regmatch, (char_u *)dp->d_name, &(colnr_T)0));
+		#elif defined WIN_64
+			regexec_return = vim_regexec(dp->d_name[0], (char_u *)dp->d_name, &(colnr_T)0));
+		#else 
+			regexec_return = vim_regexec(starts_with_dot, (char_u *)dp->d_name, &(colnr_T)1));
+		#endif		
+	    if ((dp->d_name[0] != '.' || starts_with_dot)
+		    && regexec_return)
 	    {
+
 		STRCPY(s, dp->d_name);
 		len = STRLEN(buf);
 		STRCPY(buf + len, path_end);
